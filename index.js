@@ -32,7 +32,7 @@ const
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
-// Accepts POST requests at /webhook endpoint
+// Accepts POST requests at /endpoint
 app.post('', (req, res) => {  
 
   // Parse the request body from the POST
@@ -54,7 +54,7 @@ app.post('', (req, res) => {
 
       // Check if the event is a message or postback and
       // pass the event to the appropriate handler function
-      if (webhook_event.message) {
+      if (webhook_event) {
         handleMessage(sender_psid, webhook_event.message);        
       } else if (webhook_event.postback) {
         
