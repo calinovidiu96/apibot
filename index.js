@@ -37,7 +37,7 @@ app.post('/webhook', (req, res) => {
 
 
 //Add support for GET requests to our webhook
-app.get('/webhook', (req, res) => {
+app.get('', (req, res) => {
     
     //Your verify token. Should be a random string.
     let VERIFY_TOKEN = "my_lovely_bot_api";
