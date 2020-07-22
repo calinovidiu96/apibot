@@ -168,9 +168,9 @@ function callSendAPI(sender_psid, response) {
       "json": request_body
     }).then(res => {
       console.log('statusCode: ${res.statusCode}')
-      //console.log(res)
+      console.log(res)
     }).catch(error => {
-      //console.error(error)
+      console.error(error)
     })
   
 }
