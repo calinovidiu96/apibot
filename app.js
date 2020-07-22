@@ -24,7 +24,7 @@
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 // Imports dependencies and set up http server
 const 
-  request = require('request'),
+  axios = require('axios'),
   express = require('express'),
   body_parser = require('body-parser'),
   app = express().use(body_parser.json()); // creates express http server
@@ -153,15 +153,25 @@ function callSendAPI(sender_psid, response) {
   //     console.error("Unable to send message:" + err);
   //   }
   //}); 
-  request.post('https://graph.facebook.com/v2.6/me/messages', {
-    "q":  { "access_token": PAGE_ACCESS_TOKEN },
-    "json": request_body
-  }, (err, res, body) => {
-      if (!err) {
-        console.log('message sent!')
-      } else {
-        console.error("Unable to send message:" + err);
-      }
-    });
+  // request.post('https://graph.facebook.com/v2.6/me/messages', {
+  //   "qs":  { "access_token": PAGE_ACCESS_TOKEN },
+  //   "json": request_body
+  // }, (err, res, body) => {
+  //     if (!err) {
+  //       console.log('message sent!')
+  //     } else {
+  //       console.error("Unable to send message:" + err);
+  //     }
+  //   });
+
+    axios.post('https://graph.facebook.com/v2.6/me/messages',{
+      "qs":  { "access_token": PAGE_ACCESS_TOKEN },
+      "json": request_body
+    }).then(res => {
+      console.log('statusCode: ${res.statusCode}')
+      console.log(res)
+    }).catch(error => {
+      console.error(error)
+    })
   
 }
