@@ -164,14 +164,13 @@ function callSendAPI(sender_psid, response) {
   //     }
   //   });
 
-    axios.post('https://graph.facebook.com/v2.6/me/messages',{
-      "qs":  { "access_token": "EAAMi8ezOnHEBAFUegSxtxK8s2bZBZAxLHRRUV4wavLaFUntabzCZAMjO4UZCKJ2TBi9ZCAZBvDLCl76PSBFTOx0lakeuZB92C6X0KGdxPOA4BAudQIvGbZCgq5y34fySkxcwRJKANB20Dk5SZBf42UOUO77UrnpAAlDe3E68TfLUTuAZDZD" },
+    axios.post('https://graph.facebook.com/v2.6/me/messages?access_token=EAAMi8ezOnHEBAFMO2leqrLtcwN2I228g3KHAZB5h2a1IMZCbVSoeg3wUfaILXvTcmJEYfa8uBgb2ni2dWtiDke7qyXMtJfsdWYiheu5FXo2PDB6tFUo9xJoeanVM1Fhc3zHsslsb95c4llCSQYMlLZBa8rN6HjgZATmyBrfmtwZDZD', {
       "json": request_body
     }).then(res => {
       console.log('statusCode: ${res.statusCode}')
-      console.log(res)
+      //console.log(res)
     }).catch(error => {
-      console.error(error)
+      //console.error(error)
     })
   
 }
