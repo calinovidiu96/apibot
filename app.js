@@ -24,7 +24,7 @@
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 // Imports dependencies and set up http server
 const 
-  axios = require('axios'),
+  axios = require('request-promise'),
   express = require('express'),
   body_parser = require('body-parser'),
   app = express().use(body_parser.json()); // creates express http server
@@ -142,9 +142,9 @@ function callSendAPI(sender_psid, response) {
 
   // Send the HTTP request to the Messenger Platform
   // request({
-  //   "uri": "https://graph.facebook.com/v2.6/me/messages",
-  //   "qs": { "access_token": PAGE_ACCESS_TOKEN },
-  //   "method": "POST",
+  //   uri: "https://graph.facebook.com/v2.6/me/messages",
+  //   qs: { "access_token": PAGE_ACCESS_TOKEN },
+  //   method: 'POST',
   //   "json": request_body
   // }, (err, res, body) => {
   //   if (!err) {
@@ -152,7 +152,20 @@ function callSendAPI(sender_psid, response) {
   //   } else {
   //     console.error("Unable to send message:" + err);
   //   }
-  //}); 
+  // }); 
+
+
+
+
+  const postToFacebook = {  
+    method: 'POST',
+    uri: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: { access_token: PAGE_ACCESS_TOKEN },
+    json: request_body
+  };
+  request(postToFacebook)
+
+
   // request.post('https://graph.facebook.com/v2.6/me/messages', {
   //   "qs":  { "access_token": PAGE_ACCESS_TOKEN },
   //   "json": request_body
@@ -164,14 +177,14 @@ function callSendAPI(sender_psid, response) {
   //     }
   //   });
 
-    axios.post('https://graph.facebook.com/v2.6/me/messages?access_token=EAAMi8ezOnHEBAFMO2leqrLtcwN2I228g3KHAZB5h2a1IMZCbVSoeg3wUfaILXvTcmJEYfa8uBgb2ni2dWtiDke7qyXMtJfsdWYiheu5FXo2PDB6tFUo9xJoeanVM1Fhc3zHsslsb95c4llCSQYMlLZBa8rN6HjgZATmyBrfmtwZDZD', {
+    // axios.post('https://graph.facebook.com/v2.6/me/messages?access_token=EAAMi8ezOnHEBAFMO2leqrLtcwN2I228g3KHAZB5h2a1IMZCbVSoeg3wUfaILXvTcmJEYfa8uBgb2ni2dWtiDke7qyXMtJfsdWYiheu5FXo2PDB6tFUo9xJoeanVM1Fhc3zHsslsb95c4llCSQYMlLZBa8rN6HjgZATmyBrfmtwZDZD', {
       
-      json: request_body
-    }).then(res => {
-      console.log('statusCode: ${res.statusCode}')
-      console.log(res)
-    }).catch(error => {
-      console.error(error)
-    })
+    //   json: request_body
+    // }).then(res => {
+    //   console.log('statusCode: ${res.statusCode}')
+    //   console.log(res)
+    // }).catch(error => {
+    //   console.error(error)
+    // })
   
 }
