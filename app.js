@@ -154,7 +154,7 @@ function callSendAPI(sender_psid, response) {
   //   }
   //}); 
   request.post('https://graph.facebook.com/v2.6/me/messages', {
-    "qs":  { "access_token": PAGE_ACCESS_TOKEN },
+    "q":  { "access_token": PAGE_ACCESS_TOKEN },
     "json": request_body
   }, (err, res, body) => {
       if (!err) {
