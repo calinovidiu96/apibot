@@ -165,7 +165,7 @@ function callSendAPI(sender_psid, response) {
   //   });
 
     axios.post('https://graph.facebook.com/v2.6/me/messages',{
-      "qs":  { "access_token": PAGE_ACCESS_TOKEN },
+      "qs":  { "access_token": "EAAMi8ezOnHEBAFUegSxtxK8s2bZBZAxLHRRUV4wavLaFUntabzCZAMjO4UZCKJ2TBi9ZCAZBvDLCl76PSBFTOx0lakeuZB92C6X0KGdxPOA4BAudQIvGbZCgq5y34fySkxcwRJKANB20Dk5SZBf42UOUO77UrnpAAlDe3E68TfLUTuAZDZD" },
       "json": request_body
     }).then(res => {
       console.log('statusCode: ${res.statusCode}')
