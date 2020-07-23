@@ -24,7 +24,7 @@
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 // Imports dependencies and set up http server
 const 
-  request = require('request'),
+  axios = require('axios'),
   express = require('express'),
   body_parser = require('body-parser'),
   app = express().use(body_parser.json()); // creates express http server
@@ -136,18 +136,31 @@ function callSendAPI(sender_psid, response) {
   }
 
   // Send the HTTP request to the Messenger Platform
-  request({
-    "uri": "https://graph.facebook.com/v2.6/me/messages",
-    "qs": { "access_token": process.env.PAGE_ACCESS_TOKEN },
-    "method": "POST",
-    "json": request_body
-  }, (err, res, body) => {
-    if (!err) {
-      console.log('message sent!')
-    } else {
-      console.error("Unable to send message:" + err);
+  // request({
+  //   "uri": "https://graph.facebook.com/v2.6/me/messages",
+  //   "qs": { "access_token": process.env.PAGE_ACCESS_TOKEN },
+  //   "method": "POST",
+  //   "json": request_body
+  // }, (err, res, body) => {
+  //   if (!err) {
+  //     console.log('message sent!')
+  //   } else {
+  //     console.error("Unable to send message:" + err);
+  //   }
+  // }); 
+
+  axios.post('https://graph.facebook.com/v2.6/me/messages', {
+        
+        access_token: PAGE_ACCESS_TOKEN,
+        message: request_body
+      })
+      .then((response) => {
+        res.send(200, 'Success - Message sent', response)
+      })
+      .catch((error) => {
+        res.send(400, 'Error - Message not sent', error);
+      });
     }
-  }); 
 }
 
 
