@@ -138,7 +138,7 @@ function callSendAPI(sender_psid, response) {
   // Send the HTTP request to the Messenger Platform
   request({
     "uri": "https://graph.facebook.com/v2.6/me/messages",
-    "qs": { "bearer": PAGE_ACCESS_TOKEN },
+    "qs": { "access_token": process.env.PAGE_ACCESS_TOKEN },
     "method": "POST",
     "json": request_body
   }, (err, res, body) => {
@@ -148,17 +148,6 @@ function callSendAPI(sender_psid, response) {
       console.error("Unable to send message:" + err);
     }
   }); 
-
-//   const postToFacebook = {  
-//     method: 'POST',
-//     uri: `https://graph.facebook.com/v2.6/me/messages?hub.verify_token=EAAMi8ezOnHEBAFMO2leqrLtcwN2I228g3KHAZB5h2a1IMZCbVSoeg3wUfaILXvTcmJEYfa8uBgb2ni2dWtiDke7qyXMtJfsdWYiheu5FXo2PDB6tFUo9xJoeanVM1Fhc3zHsslsb95c4llCSQYMlLZBa8rN6HjgZATmyBrfmtwZDZD`,
-//     qs: {
-     
-//       json: request_body
-//     }
-//   };
-//   request(postToFacebook)
-    
 }
 
 
