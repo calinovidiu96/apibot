@@ -153,13 +153,14 @@ function callSendAPI(sender_psid, response) {
         
         access_token: PAGE_ACCESS_TOKEN,
         message: request_body
-      })
-      .then((response) => {
-        res.send(200, 'Success - Message sent', response)
-      })
-      .catch((error) => {
-        res.send(400, 'Error - Message not sent', error);
-      });
+      }, (err, res, body) => {
+          if (!err) {
+            console.log('message sent!')
+          } else {
+            console.error("Unable to send message:" + err);
+          }
+
+        });
     
 }
 
