@@ -23,15 +23,14 @@
 'use strict';
 //console.log(process.env);
 // Imports dependencies and set up http server
+require('dotenv').config();
+
 const 
-  dotenv = require('dotenv').config(),
   request = require('request-promise'),
   express = require('express'),
   body_parser = require('body-parser'),
   app = express().use(body_parser.json()); // creates express http server
 
-  
-  console.log('TESTdmiwmaidwda  ' + process.env.PAGE_ACCESS_TOKEN);
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
