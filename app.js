@@ -160,7 +160,7 @@ function callSendAPI(sender_psid, response) {
       .catch((error) => {
         res.send(400, 'Error - Message not sent', error);
       });
-    }
+    
 }
 
 
