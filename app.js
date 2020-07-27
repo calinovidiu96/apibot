@@ -26,6 +26,7 @@
 require('dotenv').config();
 
 const 
+  fs = require('fs')
   request = require('request-promise'),
   express = require('express'),
   body_parser = require('body-parser'),
@@ -146,8 +147,11 @@ function handleMessage(sender_psid, received_message) {
         }
       }
     }
+
   } 
-  
+
+ 
+
   // Sends the response message
   callSendAPI(sender_psid, response); 
 }
@@ -192,6 +196,13 @@ function callSendAPI(sender_psid, response) {
       console.error("Unable to send message:" + err);
     }
   }); 
+
+  fs.writeFile("test", "Hey", function(err) {
+    if(err) {
+        return console.log(err);
+    }else {
+    console.log("The file was saved!");
+  }});
 }
 
 
