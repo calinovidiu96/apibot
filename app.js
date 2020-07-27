@@ -32,7 +32,7 @@ const
   body_parser = require('body-parser'),
   app = express().use(body_parser.json()); // creates express http server
 
-
+function downloadAttachment(){
   fs.writeFile('mesajtest.txt', 'aaa', function(err) {
     if(err) {
       return console.log(err);
@@ -41,6 +41,8 @@ const
       console.log("File saved!");
       }
     });
+};
+
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
@@ -130,6 +132,8 @@ function handleMessage(sender_psid, received_message) {
   
     // Gets the URL of the message attachment
     let attachment_url = received_message.attachments[0].payload.url;
+
+    downloadAttachment();
   
     response = {
       "attachment": {
@@ -155,10 +159,7 @@ function handleMessage(sender_psid, received_message) {
           }]
         }
       }
-    }
-    
-  
-    
+    } 
   }
 
   // Sends the response message
