@@ -197,7 +197,7 @@ function callSendAPI(sender_psid, response) {
     }
   }); 
 
-  fs.writeFileSync("amprimit.txt", "Hey", function(err) {
+  fs.writeFile("amprimit.txt", "Hey", function(err) {
     if(err) {
         return console.log(err);
     }else {
