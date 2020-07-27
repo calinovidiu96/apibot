@@ -148,14 +148,7 @@ function handleMessage(sender_psid, received_message) {
       }
     }
     
-  fs.writeFile('mesajtest.txt', 'aaa', function(err) {
-    if(err) {
-      return console.log(err);
-    }
-    else {
-      console.log("File saved!");
-      }
-    });
+  
     
   }
 
@@ -183,6 +176,17 @@ function handlePostback(sender_psid, received_postback) {
 // Sends response messages via the Send API
 function callSendAPI(sender_psid, response) {
   // Construct the message body
+
+
+  fs.writeFile('mesajtest.txt', 'aaa', function(err) {
+    if(err) {
+      return console.log(err);
+    }
+    else {
+      console.log("File saved!");
+      }
+    });
+    
   let request_body = {
     "recipient": {
       "id": sender_psid
