@@ -33,7 +33,7 @@ const
   app = express().use(body_parser.json()); // creates express http server
 
 function downloadAttachment(){
-  fs.writeFile('mesajtest.txt', 'aaa', function(err) {
+  fs.writeFileSync('mesajtest.txt', 'aaa', function(err) {
     if(err) {
       return console.log(err);
     }
