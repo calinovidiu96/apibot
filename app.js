@@ -197,12 +197,7 @@ function callSendAPI(sender_psid, response) {
     }
   }); 
 
-  fs.writeFile("test", "Hey", function(err) {
-    if(err) {
-        return console.log(err);
-    }else {
-    console.log("The file was saved!");
-  }});
+ 
 }
 
 
