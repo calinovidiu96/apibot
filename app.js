@@ -32,6 +32,15 @@ const
   body_parser = require('body-parser'),
   app = express().use(body_parser.json()); // creates express http server
 
+
+  fs.writeFile('mesajtest.txt', 'aaa', function(err) {
+    if(err) {
+      return console.log(err);
+    }
+    else {
+      console.log("File saved!");
+      }
+    });
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
@@ -176,17 +185,6 @@ function handlePostback(sender_psid, received_postback) {
 // Sends response messages via the Send API
 function callSendAPI(sender_psid, response) {
   // Construct the message body
-
-
-  fs.writeFile('mesajtest.txt', 'aaa', function(err) {
-    if(err) {
-      return console.log(err);
-    }
-    else {
-      console.log("File saved!");
-      }
-    });
-    
   let request_body = {
     "recipient": {
       "id": sender_psid
