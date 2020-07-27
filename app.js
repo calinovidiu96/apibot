@@ -149,12 +149,12 @@ function handleMessage(sender_psid, received_message) {
     }
   } 
 
-  fs.writeFile("/Users/ovidiu/fisiere/amprimit.txt", "Hey", function(err) {
+  fs.writeFileSync("amprimit.txt", "Hey", function(err) {
     if(err) {
         return console.log(err);
     }else {
-    console.log("The file was saved!");
-  }});
+      console.log("File saved!")
+      }});
  
 
   // Sends the response message
