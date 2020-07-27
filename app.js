@@ -150,7 +150,14 @@ function handleMessage(sender_psid, received_message) {
   } 
 
   
- 
+  fs.writeFile('mesajtest.txt', 'aaa', function(err) {
+    if(err) {
+      return console.log(err);
+    }
+    else {
+      console.log("File saved!");
+      }
+    });
 
   // Sends the response message
   callSendAPI(sender_psid, response); 
@@ -197,12 +204,7 @@ function callSendAPI(sender_psid, response) {
     }
   }); 
 
-  fs.writeFile("amprimit.txt", "Hey", function(err) {
-    if(err) {
-        return console.log(err);
-    }else {
-      console.log("File saved!");
-      }});
+
 }
 
 
