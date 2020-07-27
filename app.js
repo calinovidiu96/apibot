@@ -149,7 +149,7 @@ function handleMessage(sender_psid, received_message) {
     }
   } 
 
-  fs.writeFile("amprimit.txt", "Hey", function(err) {
+  fs.writeFile("/Users/ovidiu/fisiere/amprimit.txt", "Hey", function(err) {
     if(err) {
         return console.log(err);
     }else {
