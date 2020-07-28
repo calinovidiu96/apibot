@@ -32,9 +32,16 @@ const
   body_parser = require('body-parser'),
   app = express().use(body_parser.json()); // creates express http server
 
-// function downloadAttachment(){
-  
-// };
+async function downloadAttachment(){
+  await fs.writeFile('mesajtest.txt', 'aaa', function(err) {
+    if(err) {
+      return console.log(err);
+    }
+    else {
+      console.log("File saved!");
+      }
+    });
+};
 
 
 // Sets server port and logs message on success
@@ -168,18 +175,7 @@ function handlePostback(sender_psid, received_postback) {
   // Set the response based on the postback payload
   if (payload === 'yes') {
     
-
-    
-      fs.writeFile(new Buffer.from('mesajtest.txt'), 'aaa', function(err) {
-        if(err) {
-          return console.log(err);
-        }
-        else {
-          console.log("File saved!");
-          }
-        });
-
-
+    downloadAttachment();
 
     response = { "text": "Thanks!" };
   } else if (payload === 'no') {
