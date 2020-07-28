@@ -38,8 +38,8 @@ const
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
-async function downloadAttachment(){
-  await fs.writeFile('testnouw.txt', 'cevacuvinte', function(err) {
+function downloadAttachment(){
+  fs.writeFile('testnouw.txt', 'cevacuvinte', function(err) {
     if(err) {
       return console.log(err);
     }
