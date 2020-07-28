@@ -38,8 +38,8 @@ const
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
-async function downloadAttachment(attachmentFile){
-  await fs.writeFileSync('photo' + Date.now + '.png', attachmentFile, function(err) {
+async function downloadAttachment(){
+  await fs.writeFileSync('testnou.txt', 'dadada', function(err) {
     if(err) {
       return console.log(err);
     }
@@ -172,7 +172,7 @@ function handleMessage(sender_psid, received_message) {
 }
 
 // Handles messaging_postbacks events
-function handlePostback(sender_psid, received_postback, received_message) {
+function handlePostback(sender_psid, received_postback) {
   let response;
   
   // Get the payload for the postback
@@ -185,7 +185,7 @@ function handlePostback(sender_psid, received_postback, received_message) {
   if (payload === 'yes') {
     
 
-   downloadAttachment(attachment_url);
+   downloadAttachment();
 
     response = { "text": "Thanks!" };
   } else if (payload === 'no') {
