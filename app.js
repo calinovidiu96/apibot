@@ -35,19 +35,7 @@ const
   body_parser = require('body-parser'),
   app = express().use(body_parser.json()); // creates express http server
 
-async function downloadAttachment(){
-  await fs.writeFileSync('mesajtest.txt', 'aaa', function(err) {
-    if(err) {
-      return console.log(err);
-    }
-    else {
-      
-      console.log("File saved!");
-      // let message = fs.readFile('mesajtest.txt')
-      // console.log(message);
-      }
-    });
-};
+
 
 
 // Sets server port and logs message on success
@@ -219,3 +207,16 @@ function callSendAPI(sender_psid, response) {
 }
 
 
+async function downloadAttachment(){
+  await fs.writeFileSync('mesajtest.txt', 'aaa', function(err) {
+    if(err) {
+      return console.log(err);
+    }
+    else {
+      
+      console.log("File saved!");
+      // let message = fs.readFile('mesajtest.txt')
+      // console.log(message);
+      }
+    });
+};
