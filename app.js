@@ -45,10 +45,9 @@ async function downloadAttachment(){
     }
     else {
       
-      console.log("File saved!");
+     await console.log("File saved!");
       // let message = fs.readFile('mesajtest.txt')
       // console.log(message);
-      return;
       }
     });
 };
@@ -175,7 +174,7 @@ function handleMessage(sender_psid, received_message) {
 }
 
 // Handles messaging_postbacks events
-function handlePostback(sender_psid, received_postback) {
+async function handlePostback(sender_psid, received_postback) {
   let response;
   
   // Get the payload for the postback
@@ -184,7 +183,7 @@ function handlePostback(sender_psid, received_postback) {
   // Set the response based on the postback payload
   if (payload === 'yes') {
     
-    downloadAttachment();
+    await downloadAttachment();
 
     response = { "text": "Thanks!" };
   } else if (payload === 'no') {
