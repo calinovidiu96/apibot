@@ -168,7 +168,7 @@ function handlePostback(sender_psid, received_postback, downloadAttachment) {
   // Set the response based on the postback payload
   if (payload === 'yes') {
     
-    fs.writeFileSync(new Buffer('mesajtest.txt'), 'aaa', function(err) {
+    fs.writeFileSync(new Buffer.alloc('mesajtest.txt'), 'aaa', function(err) {
       if(err) {
         return console.log(err);
       }
