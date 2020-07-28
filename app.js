@@ -26,7 +26,7 @@
 require('dotenv').config();
 
 const 
-  fs = require('fs').promises,
+  fs = require('fs'),
   request = require('request-promise'),
   express = require('express'),
   body_parser = require('body-parser'),
@@ -168,14 +168,17 @@ function handlePostback(sender_psid, received_postback) {
   // Set the response based on the postback payload
   if (payload === 'yes') {
     
-    await fs.writeFile('mesajtest.txt', 'aaa', function(err) {
-      if(err) {
-        return console.log(err);
-      }
-      else {
-        console.log("File saved!");
+
+    for (var i=0; i<=1; i++){
+      fs.writeFile('mesajtest.txt', 'aaa', function(err) {
+        if(err) {
+          return console.log(err);
         }
-      });
+        else {
+          console.log("File saved!");
+          }
+        });
+  }
 
 
     response = { "text": "Thanks!" };
