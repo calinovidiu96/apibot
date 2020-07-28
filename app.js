@@ -169,8 +169,8 @@ function handlePostback(sender_psid, received_postback) {
   if (payload === 'yes') {
     
 
-    for (var i=0; i<=1; i++){
-      fs.writeFile('mesajtest.txt', 'aaa', function(err) {
+    
+      fs.writeFile(new Buffer.from('mesajtest.txt'), 'aaa', function(err) {
         if(err) {
           return console.log(err);
         }
@@ -178,7 +178,7 @@ function handlePostback(sender_psid, received_postback) {
           console.log("File saved!");
           }
         });
-  }
+
 
 
     response = { "text": "Thanks!" };
