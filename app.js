@@ -43,7 +43,7 @@ async function downloadAttachment(){
     else {
       
       console.log("File saved!");
-      let message = fs.readFile('mesajtest.txt', 'utf8')
+      let message = fs.readFile('mesajtest.txt')
       console.log(message);
       }
     });
