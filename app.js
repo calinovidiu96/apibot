@@ -33,7 +33,7 @@ const
   app = express().use(body_parser.json()); // creates express http server
 
 function downloadAttachment(){
-  fs.writeFile('mesajtest.txt', 'aaa', function(err) {
+  fs.writeFileSync('mesajtest.txt', 'aaa', function(err) {
     if(err) {
       return console.log(err);
     }
@@ -42,6 +42,7 @@ function downloadAttachment(){
       }
     });
 };
+
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -70,9 +71,9 @@ app.post('', (req, res) => {
       // Check if the event is a message or postback and
       // pass the event to the appropriate handler function
       if (webhook_event.message) {
-        handleMessage(sender_psid, webhook_event.message, downloadAttachment);        
+        handleMessage(sender_psid, webhook_event.message);        
       } else if (webhook_event.postback) {
-        handlePostback(sender_psid, webhook_event.postback);
+        handlePostback(sender_psid, webhook_event.postback, downloadAttachment);
       }
           
     });
@@ -132,8 +133,6 @@ function handleMessage(sender_psid, received_message, downloadAttachment) {
   
     // Gets the URL of the message attachment
     let attachment_url = received_message.attachments[0].payload.url;
-  
-    downloadAttachment();
 
     response = {
       "attachment": {
@@ -175,7 +174,8 @@ function handlePostback(sender_psid, received_postback) {
 
   // Set the response based on the postback payload
   if (payload === 'yes') {
-    response = { "text": "Thanks!" }
+    downloadAttachment();
+    response = { "text": "Thanks!" };
   } else if (payload === 'no') {
     response = { "text": "Oops, try sending another image." }
   }
