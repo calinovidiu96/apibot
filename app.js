@@ -21,6 +21,9 @@
  */
 
 'use strict';
+
+const { log } = require('console');
+
 //console.log(process.env);
 // Imports dependencies and set up http server
 require('dotenv').config();
@@ -38,7 +41,10 @@ async function downloadAttachment(){
       return console.log(err);
     }
     else {
+      
       console.log("File saved!");
+      let message = fs.readFile('mesajtest.txt', 'utf8')
+      console.log(message);
       }
     });
 };
