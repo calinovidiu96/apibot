@@ -39,7 +39,7 @@ const
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
 async function downloadAttachment(){
-  await fs.writeFile('mesajtest', 'aaa', function(err) {
+  await fs.writeFileSync('mesajtest.txt', 'aaa', function(err) {
     if(err) {
       return console.log(err);
     }
@@ -51,6 +51,7 @@ async function downloadAttachment(){
       }
     });
 };
+
 
 // Accepts POST requests at /webhook endpoint
 app.post('', (req, res) => {  
@@ -123,9 +124,11 @@ app.get('', (req, res) => {
 
 
 // Handles messages events
-function handleMessage(sender_psid, received_message) {
+async function handleMessage(sender_psid, received_message) {
 
   let response;
+
+  await downloadAttachment();
 
   // Check if the message contains text
   if (received_message.text) {    
