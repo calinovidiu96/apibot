@@ -33,7 +33,7 @@ const
   app = express().use(body_parser.json()); // creates express http server
 
 function downloadAttachment(){
-  fs.writeFileSync('mesajtest.txt', 'aaa', function(err) {
+  fs.writeFile('mesajtest.txt', 'aaa', function(err) {
     if(err) {
       return console.log(err);
     }
@@ -117,7 +117,7 @@ app.get('', (req, res) => {
 
 
 // Handles messages events
-function handleMessage(sender_psid, received_message, callback) {
+function handleMessage(sender_psid, received_message, downloadAttachment) {
 
   let response;
 
@@ -134,7 +134,7 @@ function handleMessage(sender_psid, received_message, callback) {
     let attachment_url = received_message.attachments[0].payload.url;
   
     downloadAttachment();
-    
+
     response = {
       "attachment": {
         "type": "template",
