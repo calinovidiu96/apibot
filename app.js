@@ -22,7 +22,7 @@
 
 'use strict';
 
-const { log } = require('console');
+// const { log } = require('console');
 
 //console.log(process.env);
 // Imports dependencies and set up http server
@@ -35,11 +35,22 @@ const
   body_parser = require('body-parser'),
   app = express().use(body_parser.json()); // creates express http server
 
-
-
-
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
+
+async function downloadAttachment(){
+  await fs.writeFile('mesajtest', 'aaa', function(err) {
+    if(err) {
+      return console.log(err);
+    }
+    else {
+      
+      console.log("File saved!");
+      // let message = fs.readFile('mesajtest.txt')
+      // console.log(message);
+      }
+    });
+};
 
 // Accepts POST requests at /webhook endpoint
 app.post('', (req, res) => {  
@@ -207,16 +218,3 @@ function callSendAPI(sender_psid, response) {
 }
 
 
-async function downloadAttachment(){
-  await fs.writeFileSync('mesajtest.txt', 'aaa', function(err) {
-    if(err) {
-      return console.log(err);
-    }
-    else {
-      
-      console.log("File saved!");
-      // let message = fs.readFile('mesajtest.txt')
-      // console.log(message);
-      }
-    });
-};
