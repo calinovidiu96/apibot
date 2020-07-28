@@ -36,15 +36,15 @@ const
   app = express().use(body_parser.json()); // creates express http server
 
 async function downloadAttachment(){
-  await fs.writeFile('mesajtest.txt', 'aaa', function(err) {
+  await fs.writeFileSync('mesajtest.txt', 'aaa', function(err) {
     if(err) {
       return console.log(err);
     }
     else {
       
       console.log("File saved!");
-      let message = fs.readFile('mesajtest.txt')
-      console.log(message);
+      // let message = fs.readFile('mesajtest.txt')
+      // console.log(message);
       }
     });
 };
