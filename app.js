@@ -50,7 +50,7 @@ function downloadAttachment(){
       }
     });
 };
-
+downloadAttachment();
 // Accepts POST requests at /webhook endpoint
 app.post('', (req, res) => {  
 
