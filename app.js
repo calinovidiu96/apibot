@@ -159,7 +159,7 @@ function handleMessage(sender_psid, received_message) {
 }
 
 // Handles messaging_postbacks events
-function handlePostback(sender_psid, received_postback, downloadAttachment) {
+function handlePostback(sender_psid, received_postback) {
   let response;
   
   // Get the payload for the postback
