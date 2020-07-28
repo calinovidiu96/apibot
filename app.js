@@ -39,7 +39,7 @@ const
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
 async function downloadAttachment(){
-  await fs.writeFile('mesajtest.txt', 'aaa', function(err) {
+  await fs.writeFileSync('mesajtest.txt', 'cevacuvinte', function(err) {
     if(err) {
       return console.log(err);
     }
@@ -50,7 +50,6 @@ async function downloadAttachment(){
       }
     });
 };
-
 
 // Accepts POST requests at /webhook endpoint
 app.post('', (req, res) => {  
