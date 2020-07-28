@@ -48,6 +48,7 @@ async function downloadAttachment(){
       console.log("File saved!");
       // let message = fs.readFile('mesajtest.txt')
       // console.log(message);
+      return;
       }
     });
 };
