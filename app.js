@@ -173,7 +173,7 @@ function handleMessage(sender_psid, received_message) {
 }
 
 // Handles messaging_postbacks events
-async function handlePostback(sender_psid, received_postback) {
+function handlePostback(sender_psid, received_postback) {
   let response;
   
   // Get the payload for the postback
@@ -182,7 +182,7 @@ async function handlePostback(sender_psid, received_postback) {
   // Set the response based on the postback payload
   if (payload === 'yes') {
     
-    await downloadAttachment();
+   downloadAttachment();
 
     response = { "text": "Thanks!" };
   } else if (payload === 'no') {
