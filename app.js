@@ -118,7 +118,7 @@ app.get('', (req, res) => {
 
 
 // Handles messages events
-function handleMessage(sender_psid, received_message, downloadAttachment) {
+function handleMessage(sender_psid, received_message) {
 
   let response;
 
@@ -166,7 +166,7 @@ function handleMessage(sender_psid, received_message, downloadAttachment) {
 }
 
 // Handles messaging_postbacks events
-function handlePostback(sender_psid, received_postback) {
+function handlePostback(sender_psid, received_postback, downloadAttachment) {
   let response;
   
   // Get the payload for the postback
