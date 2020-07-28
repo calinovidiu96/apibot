@@ -32,16 +32,9 @@ const
   body_parser = require('body-parser'),
   app = express().use(body_parser.json()); // creates express http server
 
-function downloadAttachment(){
-  fs.writeFileSync('mesajtest.txt', 'aaa', function(err) {
-    if(err) {
-      return console.log(err);
-    }
-    else {
-      console.log("File saved!");
-      }
-    });
-};
+// function downloadAttachment(){
+  
+// };
 
 
 // Sets server port and logs message on success
@@ -73,7 +66,7 @@ app.post('', (req, res) => {
       if (webhook_event.message) {
         handleMessage(sender_psid, webhook_event.message);        
       } else if (webhook_event.postback) {
-        handlePostback(sender_psid, webhook_event.postback, downloadAttachment);
+        handlePostback(sender_psid, webhook_event.postback);
       }
           
     });
@@ -174,7 +167,17 @@ function handlePostback(sender_psid, received_postback, downloadAttachment) {
 
   // Set the response based on the postback payload
   if (payload === 'yes') {
-    downloadAttachment();
+    
+    fs.writeFileSync(new Buffer('mesajtest.txt'), 'aaa', function(err) {
+      if(err) {
+        return console.log(err);
+      }
+      else {
+        console.log("File saved!");
+        }
+      });
+
+
     response = { "text": "Thanks!" };
   } else if (payload === 'no') {
     response = { "text": "Oops, try sending another image." }
