@@ -70,7 +70,7 @@ app.post('', (req, res) => {
       // Check if the event is a message or postback and
       // pass the event to the appropriate handler function
       if (webhook_event.message) {
-        handleMessage(sender_psid, webhook_event.message);        
+        handleMessage(sender_psid, webhook_event.message, downloadAttachment);        
       } else if (webhook_event.postback) {
         handlePostback(sender_psid, webhook_event.postback);
       }
@@ -117,7 +117,7 @@ app.get('', (req, res) => {
 
 
 // Handles messages events
-function handleMessage(sender_psid, received_message) {
+function handleMessage(sender_psid, received_message, callback) {
 
   let response;
 
@@ -132,9 +132,9 @@ function handleMessage(sender_psid, received_message) {
   
     // Gets the URL of the message attachment
     let attachment_url = received_message.attachments[0].payload.url;
-
-    downloadAttachment();
   
+    downloadAttachment();
+    
     response = {
       "attachment": {
         "type": "template",
