@@ -39,13 +39,12 @@ const
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
 async function downloadAttachment(){
-  await fs.writeFile('mesajtest.txt', 'aaa', function(err) {
+  await fs.writeFileSync('mesajtest.txt', 'aaa', function(err) {
     if(err) {
       return console.log(err);
     }
     else {
-      
-     await console.log("File saved!");
+      console.log("File saved!");
       // let message = fs.readFile('mesajtest.txt')
       // console.log(message);
       }
