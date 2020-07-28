@@ -39,7 +39,7 @@ const
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
 async function downloadAttachment(){
-  await fs.writeFileSync('testnou.txt', 'dadada', function(err) {
+  await fs.writeFileSync('testnouw.txt', 'cevacuvinte', function(err) {
     if(err) {
       return console.log(err);
     }
@@ -178,13 +178,9 @@ function handlePostback(sender_psid, received_postback) {
   // Get the payload for the postback
   let payload = received_postback.payload;
 
-  // Gets the URL of the message attachment
-  let attachment_url = received_message.attachments[0].payload.url;
-
   // Set the response based on the postback payload
   if (payload === 'yes') {
     
-
    downloadAttachment();
 
     response = { "text": "Thanks!" };
