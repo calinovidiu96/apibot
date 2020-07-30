@@ -22,9 +22,6 @@
 
 'use strict';
 
-// const { log } = require('console');
-
-//console.log(process.env);
 // Imports dependencies and set up http server
 require('dotenv').config();
 
@@ -35,22 +32,20 @@ const
   body_parser = require('body-parser'),
   app = express().use(body_parser.json()); // creates express http server
 
+let attachment_url;
+
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
-function downloadAttachment(){
-  fs.writeFile('testnouw.txt', 'cevacuvinte', function(err) {
-    if(err) {
-      return console.log(err);
-    }
-    else {
-      console.log("File saved!");
-      // let message = fs.readFile('mesajtest.txt')
-      // console.log(message);
-      }
-    });
+var downloadAttachment = function(uri, filename, callback){
+  request.head(uri, function(err, res, body){
+    console.log('content-type:', res.headers['content-type']);
+    console.log('content-length:', res.headers['content-length']);
+
+    request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+  });
 };
-downloadAttachment();
+
 // Accepts POST requests at /webhook endpoint
 app.post('', (req, res) => {  
 
@@ -77,11 +72,9 @@ app.post('', (req, res) => {
       if (webhook_event.message) {
         handleMessage(sender_psid, webhook_event.message);        
       } else if (webhook_event.postback) {
-        handlePostback(sender_psid, webhook_event.postback);
+        handlePostback(sender_psid, webhook_event.postback, attachment_url);
       }
-          
     });
-
         // Return a '200 OK' response to all events
         res.status(200).send('EVENT_RECEIVED');
 
@@ -91,6 +84,8 @@ app.post('', (req, res) => {
       }
 
 });
+
+
 
 // Accepts GET requests at the /webhook endpoint
 app.get('', (req, res) => {
@@ -126,8 +121,6 @@ function handleMessage(sender_psid, received_message) {
 
   let response;
 
-  
-
   // Check if the message contains text
   if (received_message.text) {    
 
@@ -138,7 +131,7 @@ function handleMessage(sender_psid, received_message) {
   }  else if (received_message.attachments) {
   
     // Gets the URL of the message attachment
-    let attachment_url = received_message.attachments[0].payload.url;
+    attachment_url = received_message.attachments[0].payload.url;
 
     response = {
       "attachment": {
@@ -169,19 +162,25 @@ function handleMessage(sender_psid, received_message) {
 
   // Sends the response message
   callSendAPI(sender_psid, response); 
+  return attachment_url;
 }
 
 // Handles messaging_postbacks events
-function handlePostback(sender_psid, received_postback) {
+function handlePostback(sender_psid, received_postback, attachment_url) {
   let response;
-  
+
   // Get the payload for the postback
   let payload = received_postback.payload;
 
   // Set the response based on the postback payload
   if (payload === 'yes') {
-    
-   downloadAttachment();
+
+    var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+    var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);
+
+    downloadAttachment(attachment_url, 'facebook_' + localISOTime.replace(/-|\.|:/g,"_") + '.png', function(){
+      console.log('Done');
+    });
 
     response = { "text": "Thanks!" };
   } else if (payload === 'no') {
@@ -217,5 +216,10 @@ function callSendAPI(sender_psid, response) {
 
 
 }
+
+
+
+
+
 
 
